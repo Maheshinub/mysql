@@ -1,0 +1,99 @@
+SQL Ineuron
+
+-- Active: 1674825229817@@127.0.0.1@3306
+CREATE DATABASE sqldb;
+use sqldb;
+create table testtable(
+    id int,
+    name varchar(50),
+    address varchar (50)
+);
+
+insert into testtable values(1,'mahesh','bellary'),(2,'jay','bangalore');
+
+select * from testtable;
+
+create table testtbl(
+    id int,
+    name varchar(50),
+    age int,
+    constraint pk primary key (id)
+);
+
+select * from testtbl;
+
+insert into testtbl values (1,'mahesh',20);
+insert into testtbl values (3,'mahesh',25);
+
+create table customers(
+    cust_id int,
+    name varchar(50),
+    age int,
+    constraint pk primary key (cust_id)
+);
+
+create table orders(
+    order_id int,
+    order_num int,
+    customer_id int,
+    constraint pk primary key (order_id),
+    constraint fk foreign key (customer_id) REFERENCES customers(cust_id)
+);
+
+truncate table testtbl;
+
+select * from testtbl;
+
+create table if not exists employee(
+    id int,
+    name varchar(50),
+    age int,
+    hiring_date date,
+    salary int,
+    city varchar(100)
+);
+
+insert into employee values(1,'mahe',25,'2022-08-09',1000,'bellary');
+insert into employee values(2,'mahesh',33,'2022-08-09',5000,'bangalore');
+
+insert into employee values(3,'jaya',23,'2021-08-09',6000,'china');
+insert into employee values(5,'jayash',24,'2021-08-09',6000,'bangal');
+
+insert into employee values(6,'kar',24,'2021-08-09',6000,'bangal');
+
+select * from employee;
+select count(*) as total_count from employee;
+select name as employee_name, salary as employee_salary from employee;
+
+select distinct(hiring_date) from employee;
+
+select count(distinct (age)) from employee;
+
+--increment each employee salary by 20% and display final salary with new salary
+select id,
+       name,
+       salary as old_salary,
+       (salary + salary * 0.2) as new_salary
+from employee;
+
+update employee set age = 20;
+
+select * from employee;
+
+--update the salary of teh employee after giving 20% AUTO_INCREMENT
+
+update employee set salary = (salary + salary *0.2 );
+
+
+--- update the salary of the employees who joined the company in 2022-08-09 to 80000;
+
+update employee set salary = 80000 where hiring_date = '2022-08-09';
+
+select * from employee;
+
+--delete specific records from table using delete command 
+--delete records of this employees who joined company on this date 2022-08-09
+
+delete from employee where hiring_date = '2022-08-09';
+
+
