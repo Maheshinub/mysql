@@ -1,0 +1,101 @@
+-- Active: 1674836257966@@127.0.0.1@3306
+CREATE DATABASE testdb;
+use testdb;
+
+create table employee(
+    id int,
+    emp_name varchar(50),
+    age int,
+    salary int
+);
+
+insert into employee values(1,'mahe',20,3000),(2,'mahesh',39,9283),(3,'jayu',09,92832),(4,'anu',28,29382),(5,'jaysh',28,29383);
+
+select * from employee;
+
+select emp_name as emp_temp_data, emp_name
+from employee
+where emp_name in ('jayu','mahesh');
+
+update employee set emp_name = 'karthik';
+
+select * from employee;
+update employee set age = 20;
+
+select * from employee;
+
+drop employee emp_name = 'karthik';
+
+update employee set salary = 23872 where age = 9;
+
+select * from employee;
+
+--to see the limit of the records
+select * from employee limit 2;
+
+--sorting data in mysql by 'order by'
+select * from employee order by id;
+
+select * from employee order by salary desc;
+select * from employee order by salary asc;
+select * from employee order by id desc, salary asc;
+
+--find the employee who is getting max salary?
+select * from employee order by salary desc limit 1;
+
+select * from employee order by salary asc limit 1;
+
+--list all the employess who is gettig salary more than 2000
+select * from employee where salary > 2000;
+
+--list all the employees who is getting salary less than 2000
+select * from employee where salary < 2000;
+
+--filetr the records where enmployee age = 20
+select * from employee where age = 20;
+
+--filetr the records where enmployee age = 20
+select * from employee where age != 20;
+
+
+select * from employees;
+
+create table employees(
+    id int,
+    emp_name varchar(50),
+    age int,
+    salary int
+);
+
+insert into employees values(1,'mahe',20,3000),(2,'mahesh',39,9283),(3,'jayu',09,92832),(4,'anu',28,29382),(5,'jaysh',28,29383);
+
+select * from employees;
+
+--find the employees who joined the company age 28 and there salary is less than 5000
+select * from employee where age = 28 and salary > 5000;
+
+-- how to use the between operation in where clause
+--get all teh employees who has age between 15 to 30
+select * from employees where age between 15 and 30;
+
+--get all teh employees who has salary between 3000 to 20000
+select * from employees where salary between 3000 and 20000;
+
+---how to use liek operator
+--zero one or more than one character
+--only one CHARACTER
+
+--get all the employees whos name starts with 's'
+select * from employees where emp_name like 'a%';
+
+--get all the employees whos name starts with 'mah'
+select * from employees where emp_name like 'mah%';
+
+--get all the employees whos name ends with 'h'
+select * from employees where emp_name like '%h';
+
+select * from employees where emp_name like 'm%h';
+
+--get all those employees whos name will have exact 5 characters
+select * from employees where emp_name like '_____';
+
