@@ -162,4 +162,32 @@ select age,
         min(salary) as max_salary_each_age
 from employee group by age;
 
+--GROUP BY HAVING
+--find the country where only one order was placed
+select country from orders group by country having count(*)=1;
+
+select country, distinct(state) from orders;
+
+--print distinct states present in the dataset in each country
+select country, GROUP_CONCAT(state) as states_in_country from orders group by country;
+
+select country, GROUP_CONCAT(distinct state) as states_in_country from orders group by country;
+
+select country, GROUP_CONCAT(distinct state order by state desc) as states_in_country from orders group by country;
+
+--=--SUBQUERY
+
+create table emp(
+    id int,
+    emp_name varchar(50),
+    salary int
+);
+
+insert into emp values(1,'mahe',3000),(2,'mahesh',9283),(3,'jayu',92832),(4,'anu',29382),(5,'jaysh',29383);
+
+select * from emp;
+
+--print all those records who are getting more salary than mahesh
+select * from emp where salary > (select salary from emp where emp_name = 'mahesh');
+
 
